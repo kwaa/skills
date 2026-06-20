@@ -1,0 +1,4 @@
+interface:
+  display_name: "kwaa TypeScript Taste"
+  short_description: "Apply kwaa's TypeScript design preferences"
+  default_prompt: "Use $kwaa-typescript-taste to write or refactor this TypeScript code."
