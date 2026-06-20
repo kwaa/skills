@@ -1,0 +1,4 @@
+interface:
+  display_name: "kwaa TypeScript Infra"
+  short_description: "Set up pragmatic TypeScript project infrastructure"
+  default_prompt: "Use $kwaa-typescript-infra to set up or review this TypeScript project infrastructure."

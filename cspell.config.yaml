@@ -4,5 +4,11 @@ dictionaryDefinitions: []
 dictionaries: []
 words:
   - kwaa
+  - moeru
+  - oxlint
+  - tsdown
+  - turborepo
+  - vite
+  - vitest
 ignoreWords: []
 import: []
