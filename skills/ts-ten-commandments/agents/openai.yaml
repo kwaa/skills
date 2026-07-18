@@ -1,0 +1,7 @@
+interface:
+  display_name: "TypeScript Ten Commandments"
+  short_description: "Enforce clean, readable TypeScript practices"
+  default_prompt: "Use $ts-ten-commandments to write or review clean, readable TypeScript."
+
+policy:
+  allow_implicit_invocation: true
