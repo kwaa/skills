@@ -20,10 +20,9 @@ pnpm dlx skills add kwaa/skills --skill='kwaa-typescript-best-practices'
 
 ### [`kwaa-typescript-best-practices`](./skills/kwaa-typescript-best-practices/SKILL.md)
 
-TypeScript design and style conventions for implementation, refactoring, and
-review: type modeling, functional APIs, ownership, async workflows, error
-handling, and portable modules. Combines `kwaa-typescript-taste` and
-`ts-ten-commandments`.
+Design and style rules for writing, refactoring, and reviewing TypeScript.
+Covers types, function-based APIs, data ownership, async code, errors, and portable
+modules. Combines `kwaa-typescript-taste` and `ts-ten-commandments`.
 
 ```text
 Use $kwaa-typescript-best-practices to write, refactor, or review this TypeScript code.
@@ -33,8 +32,9 @@ Inspired by [pstack/typescript-best-practices](https://github.com/cursor/plugins
 
 ### [`kwaa-typescript-infra`](./skills/kwaa-typescript-infra/SKILL.md)
 
-Infrastructure conventions for pnpm workspaces, TypeScript and ESLint presets,
-Vitest, package builds and exports, optional acceleration, and npm publishing.
+Project setup rules for pnpm workspaces, TypeScript, ESLint, Vitest, package
+builds and exports, and npm publishing. Includes optional tools for faster lint
+and build tasks.
 
 ```text
 Use $kwaa-typescript-infra to set up or review this TypeScript project infrastructure.

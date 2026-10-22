@@ -2,7 +2,7 @@
 
 ## Discriminated unions
 
-Avoid: unrelated optional fields allow a value and an error at the same time.
+Avoid: this type allows a value and an error at the same time.
 
 ```ts
 export interface ResultEvent<T> {
@@ -22,8 +22,8 @@ export type ResultEvent<T>
 
 ## Exhaustiveness
 
-Use a `never` assignment when every variant must be handled and the function's
-return type does not already enforce it.
+If every variant needs a handler, use a `never` assignment to catch missing cases.
+Skip the extra check when the return type already catches them.
 
 ```ts
 type Action = { type: 'reset' } | { type: 'set', value: number }
@@ -44,12 +44,12 @@ export const apply = (action: Action, update: (value: number) => void): void => 
 }
 ```
 
-Adding an unhandled action makes the assignment fail to compile. Partial
-observers need not handle unrelated variants.
+If you add an action without a handler, the compiler rejects the assignment.
+Code that handles only selected actions does not need this check.
 
 ## Derived types
 
-Given an existing source contract:
+Start with an existing type:
 
 ```ts
 export interface User {
@@ -59,7 +59,7 @@ export interface User {
 }
 ```
 
-Avoid: repeating fields in a second contract that can drift when `User` changes.
+Avoid: this declaration repeats fields that can become outdated when `User` changes.
 
 ```ts
 export interface UserSummary {
@@ -68,20 +68,20 @@ export interface UserSummary {
 }
 ```
 
-Prefer: derive the view from its source.
+Prefer: derive `UserSummary` from `User`.
 
 ```ts
 export type UserSummary = Pick<User, 'id' | 'name'>
 ```
 
-If `User.id` changes to `number`, the derived view follows automatically; the
-repeated declaration silently keeps `string`. Apply the same principle to
-schema-inferred and generated types.
+If `User.id` changes to `number`, the derived type updates automatically.
+The repeated declaration keeps `string`. Derive types from existing schemas
+and generated types in the same way.
 
 ## Constructive modeling
 
-When every match must contain exactly two participants, a flat array admits an
-unmatched final item. Avoid representing that contract as an unconstrained array.
+If each match needs exactly two participants, a flat array can leave one participant
+unmatched. Avoid a plain array for this requirement.
 
 ```ts
 export type Matches<T> = readonly T[]
@@ -93,21 +93,21 @@ Prefer: represent each match as a pair.
 export type Matches<T> = readonly (readonly [T, T])[]
 ```
 
-Consumers can process complete pairs without an even-length check. Converting
-untrusted flat data into this representation still requires boundary validation.
+Each item now contains two participants. Validate untrusted data before converting
+it into pairs.
 
 ## Simplest sufficient type
 
-Repeated assertions or "should never happen" throws are reasons to inspect the
-contract, rather than adding another guard at each call site.
+If the same assertion or "should never happen" error appears repeatedly, review
+the type before adding more checks.
 
-Avoid: promise a value while hiding the empty-array case.
+Avoid: this function promises a value but accepts an empty array.
 
 ```ts
 export const first = <T>(values: readonly T[]): T => values[0]!
 ```
 
-Prefer: require a first item, or expose absence when it is a valid result.
+Prefer: require a first item or return `undefined` when the array is empty.
 
 ```ts
 export const first = <T>(values: readonly [T, ...T[]]): T => values[0]
@@ -124,17 +124,17 @@ arrays for operations such as `sum` that already handle emptiness.
 
 ## Boundary validation
 
-Reuse existing validators and infer schema-owned types. Do not add a dependency
-for a simple one-off parse.
+Reuse existing validators and derive types from their schemas. For a small,
+single-use parser, avoid adding a dependency.
 
-Avoid: an assertion after JSON parsing verifies no domain fields.
+Avoid: this assertion does not check that `location` exists or contains a string.
 
 ```ts
 export const parseLocation = (text: string): { location: string } =>
   JSON.parse(text) as { location: string }
 ```
 
-Prefer: narrow the unknown input and return the verified domain shape.
+Prefer: check the input and return the fields you validated.
 
 ```ts
 export const parseLocation = (input: unknown): { location: string } => {
@@ -149,13 +149,12 @@ export const parseLocation = (input: unknown): { location: string } => {
 
 ## Narrowing
 
-Prefer automatic control-flow narrowing, then a reusable predicate, then an
-assertion as a last resort. Choose the built-in check for the input: `typeof`
-for primitives, `instanceof` for instances, `in` for structural variants, or a
-literal discriminant for modeled variants. These checks have no universal order
-among themselves; unknown input may need a basic type check first.
+Prefer automatic narrowing, then a reusable predicate, and finally an assertion.
+Choose the check that matches the input. Use `typeof` for primitives,
+`instanceof` for instances, `in` for properties, or a discriminant for union variants.
+For unknown input, check the basic type before accessing properties.
 
-Avoid: a predicate that claims an existing union variant without checking it.
+Avoid: both variants have `type`, so this predicate accepts images as text.
 
 ```ts
 type Part = { text: string, type: 'text' } | { type: 'image', url: string }
@@ -167,7 +166,7 @@ export const textOf = (part: Part): string | undefined => {
 }
 ```
 
-Prefer: let the discriminant prove which payload exists.
+Prefer: use the discriminant to narrow the variant.
 
 ```ts
 type Part = { text: string, type: 'text' } | { type: 'image', url: string }
@@ -176,13 +175,13 @@ export const textOf = (part: Part): string | undefined =>
   part.type === 'text' ? part.text : undefined
 ```
 
-An inline `filter` predicate over an already typed union is also useful narrowing;
-it is not a reason to invent a named business-type guard.
+An inline `filter` predicate can also narrow an existing union. Keep single-use
+checks inline.
 
 ## `satisfies` and assertions
 
-Use `satisfies` to check a constructed value against a contract without asserting
-that it has a type. It performs no runtime validation.
+Use `satisfies` to check that an object matches a type. The compiler checks the
+object. No runtime validation occurs.
 
 ```ts
 interface Options {
@@ -193,8 +192,8 @@ interface Options {
 export const options = { mode: 'safe', retries: 3 } satisfies Options
 ```
 
-Keep assertions local to a verified invariant or a relationship TypeScript cannot
-express. Do not use them to skip parsing external data.
+Keep each assertion close to the check or contract that supports it. Do not use
+assertions to skip validation of external data.
 
 ## Ownership
 
@@ -212,12 +211,12 @@ export const sorted = (values: readonly number[]): number[] =>
   values.toSorted((a, b) => a - b)
 ```
 
-Local mutation of owned state is fine. `readonly` prevents writes through that
-type; it does not freeze the data or isolate shared nested objects.
+A function can change data that it owns. `readonly` prevents writes through that
+type. It does not freeze the data or copy shared nested objects.
 
 ## Error boundaries
 
-Avoid: disguising a parsing failure as absence.
+Avoid: this function hides a parsing failure by returning `undefined`.
 
 ```ts
 export const parseJSON = (text: string): unknown => {
@@ -230,7 +229,7 @@ export const parseJSON = (text: string): unknown => {
 }
 ```
 
-Prefer: catch only the operation that needs context and preserve its cause.
+Prefer: catch the parsing error, add context, and preserve the cause.
 
 ```ts
 export const parseJSON = (text: string): unknown => {
@@ -243,5 +242,5 @@ export const parseJSON = (text: string): unknown => {
 }
 ```
 
-The result remains `unknown` until its domain shape is validated. Keep subsequent
-validation outside this catch so its failures are not mislabeled as JSON errors.
+The result remains `unknown` until you validate its fields. Keep that validation
+outside this catch. Otherwise, a field validation error can be reported as invalid JSON.

@@ -7,31 +7,31 @@ description: kwaa's TypeScript best practices. Use when reading or editing .ts o
 
 | Rule | Summary |
 |------|---------|
-| Modern platforms | Prefer ESM and standard JavaScript and Web APIs. Target the project's declared runtimes; avoid speculative compatibility code. |
-| Strict types | No new explicit or implicit `any`. Fix types instead of weakening compiler or lint rules. External data starts as `unknown`. |
-| Imports and exports | Separate `import type` and type-only re-exports. Prefer named exports. |
-| Interfaces and aliases | `interface` for object contracts and extension points; `type` for unions, functions, and derived types. Prefer literal unions to enums; avoid runtime-transformed `enum` and `namespace`. |
-| Discriminated unions | Keep each state's required fields together. Prefer a `type` discriminant for new event vocabularies, rather than boolean flags and optional-field bags. |
-| Constructive modeling | Choose structures that exclude illegal combinations: tuples for pairs, discriminated unions for variants. Express invariants in the representation before adding runtime checks. |
-| Derived types | Treat existing schemas and generated types as the source of truth. Derive with indexed access, `keyof`, `typeof`, and utility types. Use generics for real relationships. |
-| Simplest sufficient type | Repeated `!`, casts, or "should never happen" throws signal a missing constraint. Strengthen the input or represent absence in the output. |
-| Exhaustiveness | Use `never` for impossible states. Check exhaustive branches when return types or existing lint rules do not already catch omissions. |
-| `satisfies` and assertions | Prefer annotations or `satisfies` for constructed values; `as const` for literal inference. Allow `as` or `!` only for a verified invariant or an otherwise inexpressible relationship. Neither validates external data. |
-| Boundary validation | Parse once at the boundary; trust typed values inside. Reuse existing validators and derive types from schemas when available. Do not maintain duplicate schemas, interfaces, and guards for the same shape. |
-| Narrowing | Prefer automatic narrowing via discriminants, `in`, `typeof`, or `instanceof`, then reusable predicates, then assertions as a last resort. Keep single-use checks inline; guards must verify their claims. |
-| Arrow functions | Prefer `const` arrows and clear expression bodies. Use early returns and guard clauses; omit single-statement braces where formatting permits. Generators and dynamic `this` can use `function`. |
-| Factories over classes | Prefer functions, composition, and private closure state. Use classes for useful error identity, platform inheritance, framework integration, or prototype semantics. |
-| Ownership | Keep transformations pure; local mutation of owned state is fine. Accept readonly inputs and copy when taking mutable ownership. `readonly` and object spread do not provide deep isolation. |
-| Collection transforms | Use `map`, `filter`, `flatMap`, and object entry transforms for simple transformations. Use `for...of` or `while` for sequencing, early exit, or clearer accumulation. Avoid `for...in`. |
-| Object arguments | Prefer options objects for optional behavior, ambiguous arguments, and growing APIs. A primary argument plus options is fine. |
-| Absence and defaults | Use `??` for defaults and `== null` for either nullish value. Preserve meaningful `false`, `0`, and empty strings. Decide whether an `undefined` override preserves the default. |
-| Web APIs | Prefer Fetch, URL, Web Streams, and AbortSignal. Keep runtime-specific operations in adapters. Inject operations such as `fetch` when replacement serves a real consumer or test need. |
-| Cancellation | Forward signals and preserve abort reasons. Stop follow-up side effects after cancellation and clean up resources on every exit path. |
-| Concurrency | `Promise.all` for independent work that must all succeed; `allSettled` for useful partial results; awaited loops for ordered effects. Aggregate rejection does not cancel siblings. |
-| Promise ownership | Avoid unnecessary `async`; retain `return await` when catch or finally must observe settlement. Detached work needs a rejection owner; `void` alone does not handle failure. |
-| Error boundaries | Catch only to recover, translate, add context, report, or clean up. Narrow caught `unknown` only as needed. Preserve causes and rethrow unmatched errors unless the boundary normalizes them. Never hide failure with an empty success. |
-| Small modules | Keep helpers private and package exports deliberate. Review at 300 lines; split at 600 by default, by responsibility. Exclude generated code and resources; retain larger files only for clear cohesion. |
-| Readability | Extract meaningful behavior, not wrappers. Comments explain why; brief TSDoc explains public contracts without repeating types. |
-| Real tests | Use real platform objects with deterministic fixtures and controlled boundary implementations. Verify affected contracts, ownership, failures, and cancellation. Do not claim a mocked integration was verified. |
+| Modern platforms | Prefer ESM and standard JavaScript and Web APIs. Use the project's runtime targets. Avoid compatibility code for unsupported older runtimes. |
+| Strict types | Do not add explicit or implicit `any`. Fix type errors without weakening compiler or lint rules. Use `unknown` for untrusted data. |
+| Imports and exports | Separate type-only imports from value imports. Mark type-only exports with `export type`. Prefer named exports. |
+| Interfaces and aliases | Prefer `interface` for object contracts and extension points. Use `type` for unions, functions, and derived types. Prefer literal unions over enums. Avoid `enum` and `namespace` in runtime code. |
+| Discriminated unions | Keep each state's required fields together. Prefer a `type` discriminant for new event types. Avoid boolean flags combined with unrelated optional fields. |
+| Constructive modeling | Choose data structures that exclude invalid combinations. Use tuples for pairs and discriminated unions for variants. Express constraints in the structure before adding runtime checks. |
+| Derived types | Derive types from existing schemas and generated types. Use indexed access, `keyof`, `typeof`, and utility types. Use generics to express relationships between types. |
+| Simplest sufficient type | Repeated `!`, assertions, or "should never happen" errors can reveal a missing type constraint. Strengthen the input type or allow absence in the return type. |
+| Exhaustiveness | Use `never` for impossible states. Add an exhaustive check when the return type and lint rules do not already catch missing cases. |
+| `satisfies` and assertions | Prefer annotations or `satisfies` to check values against types. Use `as const` for literal inference. Allow assertions only for a proven condition or a type relationship TypeScript cannot express. Assertions do not validate external data. |
+| Boundary validation | Parse external data once at the boundary. Trust the resulting types inside the program. Reuse validators and derive types from existing schemas. Do not define the same shape in a schema, an interface, and a guard. |
+| Narrowing | Prefer automatic narrowing with discriminants, `in`, `typeof`, or `instanceof`. Use reusable predicates next and assertions last. Keep single-use checks inline. Guards must check every condition their return type claims. |
+| Arrow functions | Prefer `const` arrows and clear expression bodies. Use early returns and guard clauses. If the formatter permits, omit braces around single statements. Use `function` for generators or dynamic `this`. |
+| Factories over classes | Prefer functions, composition, and private closure state. Use classes when error identity, platform inheritance, framework integration, or prototype behavior makes the design clearer. |
+| Ownership | Keep transformations pure. Local changes to data a function owns are fine. Accept readonly inputs and copy caller data before taking mutable ownership. Neither `readonly` nor object spread isolates nested objects. |
+| Collection transforms | Use `map`, `filter`, `flatMap`, and object entry methods for simple transformations. Use `for...of` or `while` for ordered work, early exits, or clearer accumulation. Avoid `for...in`. |
+| Object arguments | Prefer options objects for optional behavior, ambiguous arguments, or APIs that need room to grow. A primary argument followed by options is fine. |
+| Absence and defaults | Use `??` for defaults. Use `== null` when both `null` and `undefined` mean absence. Preserve valid `false`, `0`, and empty strings. Define whether an `undefined` override preserves the default. |
+| Web APIs | Prefer Fetch, URL, Web Streams, and AbortSignal. Keep runtime-specific operations in adapters. Inject operations such as `fetch` when consumers or tests need to replace them. |
+| Cancellation | Forward abort signals and preserve their reasons. After cancellation, stop further side effects. Clean up resources on every exit path. |
+| Concurrency | Use `Promise.all` when independent operations must all succeed. Use `Promise.allSettled` when partial results are useful. Await ordered effects in a loop. If one operation rejects, `Promise.all` does not cancel the others. |
+| Promise ownership | Avoid unnecessary `async`. Keep `return await` when a catch or finally block needs to observe completion. Handle rejected background promises. `void` alone does not handle rejection. |
+| Error boundaries | Catch errors only to recover, translate, add context, report, or clean up. Narrow caught `unknown` only as needed. Preserve causes. Rethrow unmatched errors unless the boundary converts all failures. Do not return a success value to hide failure. |
+| Small modules | Keep helpers private and define public exports explicitly. Review files at 300 lines. Split at 600 unless keeping related code together is clearer. Exclude generated code and resources. |
+| Readability | Extract helpers that name useful behavior. Avoid redundant wrappers. Comments explain why. Use brief TSDoc for public contracts without repeating types. |
+| Real tests | Use real platform objects, repeatable test data, and test doubles at external boundaries. Test affected contracts, input mutation, failures, and cancellation. Do not claim that a mocked integration was verified. |
 
 Examples: [references/patterns.md](references/patterns.md).
