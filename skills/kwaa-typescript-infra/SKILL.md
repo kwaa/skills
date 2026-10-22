@@ -11,7 +11,7 @@ description: kwaa's opinionated infrastructure conventions for TypeScript librar
 - Prefer ESM, strict TypeScript, shared root configuration, and small package-level scripts.
 - Keep library, Node.js, application, documentation, and generated-code concerns separate.
 - Do not add tooling without a concrete task or quality gate that uses it.
-- Use `kwaa-typescript-taste` for source-level TypeScript design and style.
+- Use `kwaa-typescript-best-practices` for source-level TypeScript design and style.
 
 ---
 

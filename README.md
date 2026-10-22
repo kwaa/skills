@@ -13,19 +13,23 @@ pnpm dlx skills add kwaa/skills --skill='*'
 Install a specific skill:
 
 ```bash
-pnpm dlx skills add kwaa/skills --skill='kwaa-typescript-taste'
+pnpm dlx skills add kwaa/skills --skill='kwaa-typescript-best-practices'
 ```
 
 ## Skills
 
-### [`kwaa-typescript-taste`](./skills/kwaa-typescript-taste/SKILL.md)
+### [`kwaa-typescript-best-practices`](./skills/kwaa-typescript-best-practices/SKILL.md)
 
-TypeScript design and coding preferences for modern ESM libraries, reusable
-APIs, async workflows, error handling, and portable modules.
+TypeScript design and style conventions for implementation, refactoring, and
+review: type modeling, functional APIs, ownership, async workflows, error
+handling, and portable modules. Combines `kwaa-typescript-taste` and
+`ts-ten-commandments`.
 
 ```text
-Use $kwaa-typescript-taste to write or refactor this TypeScript code.
+Use $kwaa-typescript-best-practices to write, refactor, or review this TypeScript code.
 ```
+
+Inspired by [pstack/typescript-best-practices](https://github.com/cursor/plugins/tree/main/pstack/skills/typescript-best-practices)
 
 ### [`kwaa-typescript-infra`](./skills/kwaa-typescript-infra/SKILL.md)
 
