@@ -18,6 +18,16 @@ pnpm dlx skills add kwaa/skills --skill='kwaa-typescript-best-practices'
 
 ## Skills
 
+### [`ablation`](./skills/ablation/SKILL.md)
+
+Test a design by removing or simplifying parts of it. Run ablation after
+implementation and before code review to remove unnecessary complexity while
+preserving the requirements.
+
+```text
+Use $ablation to simplify this implementation before code review.
+```
+
 ### [`kwaa-typescript-best-practices`](./skills/kwaa-typescript-best-practices/SKILL.md)
 
 Design and style rules for writing, refactoring, and reviewing TypeScript.
