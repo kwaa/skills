@@ -1,0 +1,186 @@
+{
+  "version": 3,
+  "skills": {},
+  "remote": {
+    "agent-browser": {
+      "package": ".",
+      "source": "vercel-labs/agent-browser"
+    },
+    "architect": {
+      "package": ".",
+      "source": "cursor/plugins/pstack"
+    },
+    "arena": {
+      "package": ".",
+      "source": "cursor/plugins/pstack"
+    },
+    "benchmark-checklist": {
+      "package": ".",
+      "source": "cursor/plugins/pstack"
+    },
+    "blast-radius": {
+      "package": ".",
+      "source": "cursor/plugins/pstack"
+    },
+    "code-review": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "codebase-design": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "correct": {
+      "package": ".",
+      "source": "cursor/plugins/pstack"
+    },
+    "create-verification-skill": {
+      "package": ".",
+      "source": "cursor/plugins/pstack"
+    },
+    "diagnosing-bugs": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "domain-modeling": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "frontend-design": {
+      "package": ".",
+      "source": "anthropics/skills/skills/frontend-design"
+    },
+    "grill-me": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "grill-with-docs": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "grilling": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "handoff": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "how": {
+      "package": ".",
+      "source": "cursor/plugins/pstack"
+    },
+    "i-have-adhd": {
+      "package": ".",
+      "source": "ayghri/i-have-adhd"
+    },
+    "implement": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "implement-spec": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "improve-codebase-architecture": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "interrogate": {
+      "package": ".",
+      "source": "cursor/plugins/pstack"
+    },
+    "maintain-verification-skill": {
+      "package": ".",
+      "source": "cursor/plugins/pstack"
+    },
+    "no-comments": {
+      "package": ".",
+      "source": "cursor/plugins/pstack"
+    },
+    "pr": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "prototype": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "reflect": {
+      "package": ".",
+      "source": "cursor/plugins/pstack"
+    },
+    "research": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "setup-matt-pocock-skills": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "show-me-your-work": {
+      "package": ".",
+      "source": "cursor/plugins/pstack"
+    },
+    "simple-english": {
+      "package": ".",
+      "source": "AminBlg/SimpleEnglish"
+    },
+    "swarm": {
+      "package": ".",
+      "source": "cursor/plugins/pstack"
+    },
+    "tdd": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "teach": {
+      "package": ".",
+      "source": "cursor/plugins/pstack"
+    },
+    "technical-writing": {
+      "package": ".",
+      "source": "cursor/plugins/pstack"
+    },
+    "to-questionnaire": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "to-spec": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "to-tickets": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "triage": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "unslop": {
+      "package": ".",
+      "source": "cursor/plugins/pstack"
+    },
+    "wait-what": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "wayfinder": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "why": {
+      "package": ".",
+      "source": "cursor/plugins/pstack"
+    },
+    "wizard": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    },
+    "writing-for-agents": {
+      "package": ".",
+      "source": "mattpocock/skills"
+    }
+  }
+}

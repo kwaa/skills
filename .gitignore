@@ -5,7 +5,6 @@ node_modules
 .eslintcache
 coverage
 .scratch
-.agents
 .codex
 .claude
 .cursor

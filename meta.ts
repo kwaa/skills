@@ -22,6 +22,7 @@ export const sources: Source[] = [
       'domain-modeling',
       'improve-codebase-architecture',
       'diagnosing-bugs',
+      'code-review',
       'research',
       'pr',
       'handoff',
