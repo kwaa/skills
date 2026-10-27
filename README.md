@@ -1,20 +1,21 @@
 # kwaa/skills
 
-kwaa's [Agent Skills](https://agentskills.io/home)
+kwaa's [Agent Skills](https://agentskills.io/home).
 
 ## Install
 
-Install all skills:
+### Skills
 
 ```bash
-pnpm dlx skills add kwaa/skills --skill='*'
+pnpx skills add kwaa/skills
 ```
 
-Install a specific skill:
+<!-- ### Skill Pack
 
 ```bash
-pnpm dlx skills add kwaa/skills --skill='kwaa-typescript-best-practices'
-```
+pnpm i -D skills-npm @kwaa/skills
+pnpx skills-npm setup
+``` -->
 
 ## Skills
 
@@ -49,6 +50,10 @@ and build tasks.
 ```text
 Use $kwaa-typescript-infra to set up or review this TypeScript project infrastructure.
 ```
+
+<!-- ## Skill Pack
+
+In addition to all the skills mentioned above, it also includes: -->
 
 ## License
 
