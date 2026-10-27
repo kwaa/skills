@@ -1,0 +1,12 @@
+{
+  "extends": "@moeru/tsconfig/tsconfig.node.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "noEmit": true
+  },
+  "include": [
+    "meta.ts",
+    "*.config.ts",
+    "scripts/**/*.ts"
+  ]
+}

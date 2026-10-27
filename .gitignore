@@ -1,0 +1,11 @@
+node_modules
+*.tgz
+*.log
+*.tsbuildinfo
+.eslintcache
+coverage
+.scratch
+.agents
+.codex
+.claude
+.cursor

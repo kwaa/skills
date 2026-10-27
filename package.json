@@ -1,0 +1,118 @@
+{
+  "name": "@kwaa/skills",
+  "type": "module",
+  "version": "0.1.0",
+  "packageManager": "pnpm@12.3.4",
+  "description": "kwaa's Agent Skills",
+  "author": "kwaa",
+  "license": "MIT",
+  "homepage": "https://github.com/kwaa/skills#readme",
+  "repository": "github:kwaa/skills",
+  "files": [
+    "skills"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "bump": "bumpp",
+    "check": "pnpm gen --check && pnpm typecheck && pnpm lint",
+    "gen": "tsx scripts/gen.ts",
+    "lint": "eslint .",
+    "prepack": "pnpm gen --check",
+    "test": "tsx scripts/test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "skills": [
+    {
+      "skills": [
+        "grill-me",
+        "grilling",
+        "grill-with-docs",
+        "to-spec",
+        "to-tickets",
+        "implement",
+        "implement-spec",
+        "wayfinder",
+        "prototype",
+        "tdd",
+        "codebase-design",
+        "domain-modeling",
+        "improve-codebase-architecture",
+        "diagnosing-bugs",
+        "research",
+        "pr",
+        "handoff",
+        "to-questionnaire",
+        "wizard",
+        "setup-matt-pocock-skills",
+        "triage",
+        "wait-what",
+        "writing-for-agents"
+      ],
+      "source": "mattpocock/skills"
+    },
+    {
+      "skills": [
+        "architect",
+        "arena",
+        "swarm",
+        "how",
+        "why",
+        "teach",
+        "interrogate",
+        "blast-radius",
+        "no-comments",
+        "benchmark-checklist",
+        "create-verification-skill",
+        "maintain-verification-skill",
+        "show-me-your-work",
+        "reflect",
+        "correct"
+      ],
+      "source": "cursor/plugins/pstack"
+    },
+    {
+      "skills": [
+        "technical-writing",
+        "unslop"
+      ],
+      "source": "cursor/plugins/pstack"
+    },
+    {
+      "skills": [
+        "simple-english"
+      ],
+      "source": "AminBlg/SimpleEnglish"
+    },
+    {
+      "skills": [
+        "i-have-adhd"
+      ],
+      "source": "ayghri/i-have-adhd"
+    },
+    {
+      "skills": [
+        "frontend-design"
+      ],
+      "source": "anthropics/skills/skills/frontend-design"
+    },
+    {
+      "skills": [
+        "agent-browser"
+      ],
+      "source": "vercel-labs/agent-browser"
+    }
+  ],
+  "devDependencies": {
+    "@moeru/eslint-config": "^0.1.0-beta.20",
+    "@moeru/tsconfig": "^0.1.0-beta.20",
+    "@types/node": "^26.6.5",
+    "bumpp": "^12.3.0",
+    "eslint": "^10.13.0",
+    "skills-npm": "^4.1.0",
+    "tsx": "^4.23.15",
+    "typescript": "~6.0.3",
+    "yaml": "^2.9.1"
+  }
+}

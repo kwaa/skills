@@ -3,13 +3,19 @@ ignorePaths: []
 dictionaryDefinitions: []
 dictionaries: []
 words:
+  - anthropics
+  - ayghri
+  - bumpp
+  - Diátaxis
   - kwaa
   - mattpocock
   - moeru
   - oxlint
+  - pocock
   - pstack
   - tsdown
   - turborepo
+  - unslop
   - vite
   - vitest
 ignoreWords: []
