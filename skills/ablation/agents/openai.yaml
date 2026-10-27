@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ablation"
+  short_description: "Simplify a change with ablation experiments"
+  default_prompt: "Use $ablation to simplify this implementation before code review."
